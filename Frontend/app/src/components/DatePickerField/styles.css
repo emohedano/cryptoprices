@@ -1,0 +1,16 @@
+.date-picker-field {
+    display: block;
+    font-size: 1.2rem;
+}
+
+.date-picker-field > span {
+    display: block;
+}
+
+.react-datepicker__input-container > input {
+    padding: .5rem;
+    font-size: 1.1rem;
+    border: 1px solid var(--main-bg-color);
+    margin-top: .5rem;
+    color: #666;
+}
