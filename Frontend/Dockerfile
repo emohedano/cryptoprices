@@ -4,12 +4,12 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json before other files
 # Take advantage od Docker cache to save re-installing dependencies if unchanged
-COPY package.json ./app
-COPY package-lock.json ./app
+COPY ./app/package.json ./
+COPY ./app/package-lock.json ./
 
 RUN npm install --production
 
-COPY ./app /app
+COPY ./app ./
 
 RUN npm run build
 
