@@ -1,0 +1,7 @@
+select {
+    padding: .5rem;
+    font-size: 1.1rem;
+    border: 1px solid var(--main-bg-color);
+    margin-top: .5rem;
+    color: #666;
+}

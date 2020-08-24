@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import DatePickerField from './components/DatePickerField';
+import HourPickerField from './components/HourPickerField';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
           <h3>Bitcoin prices</h3>
           <div>
             <DatePickerField text="From:"/>
+            <HourPickerField/>
             <DatePickerField text="To:"/>
+            <HourPickerField/>
           </div>
           <button>
             Search
