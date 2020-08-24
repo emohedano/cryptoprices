@@ -16,9 +16,9 @@ class CoinPriceInTime:
 
         coinPrice.time_period_start = data['time_period_start']
         coinPrice.time_period_end = data['time_period_start']
-        coinPrice.price_open = data['time_period_start']
-        coinPrice.price_high = data['time_period_start']
-        coinPrice.price_low = data['time_period_start']
-        coinPrice.price_close = data['time_period_start']
+        coinPrice.price_open = data['price_open']
+        coinPrice.price_high = data['price_high']
+        coinPrice.price_low = data['price_low']
+        coinPrice.price_close = data['price_close']
 
         return coinPrice
