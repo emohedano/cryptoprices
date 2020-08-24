@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import parse from 'date-fns/parse';
-import isEqual from 'date-fns/isEqual'
-import isAfter from 'date-fns/isAfter'
-import formatISO from 'date-fns/formatISO';
+import isEqual from 'date-fns/isEqual';
+import isAfter from 'date-fns/isAfter';
 
 import DatePickerField from '../DatePickerField';
 import HourPickerField from '../HourPickerField';
@@ -47,9 +46,9 @@ const PricesSearchForm = (props) => {
         <form className="prices-search-form" onSubmit={handleSearch}>
           <h3>Bitcoin prices</h3>
           <div>
-            <DatePickerField text="From:" value={startDate} onChange={setStartDate} maxDate={new Date}/>
+            <DatePickerField text="From:" value={startDate} onChange={setStartDate} maxDate={new Date()}/>
             <HourPickerField value={startHour} onChange={setStartHour}/>
-            <DatePickerField text="To:" value={endDate} onChange={setEndDate} maxDate={new Date}/>
+            <DatePickerField text="To:" value={endDate} onChange={setEndDate} maxDate={new Date()}/>
             <HourPickerField value={endHour} onChange={setEndHour}/>
           </div>
           <div className="validation-message">

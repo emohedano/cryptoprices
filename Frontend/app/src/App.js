@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import PricesSearchForm from './components/PricesSearchForm';
+import PricesChart from './components/PricesChart';
+import api from './services/Api';
+
 import logo from './logo.svg';
 import './App.css';
-import PricesSearchForm from './components/PricesSearchForm';
+
 
 function App() {
+  const [chartData, setChartData] = useState([]);
 
-  function handleSearch(startDate, endDate) {
-    
-  }
+  useEffect(() => {
+    api.getLatestBitcoinPrices().then((data) => {
+      setChartData(data);  
+    });
+  }, [])
+
+  async function handleSearch(startDate, endDate) {
+    const startDateAsString = startDate.toISOString();
+    const endDateAsString = endDate.toISOString();
+    const data = await api.getBitcoinPrices(startDateAsString, endDateAsString);
+    setChartData(data);
+  }  
 
   return (
     <div className="app">
@@ -17,8 +32,7 @@ function App() {
       <section className="prices-section">
         <PricesSearchForm onSearch={handleSearch}/>
         <div className="chart-placeholder">
-          <div>
-          </div>
+          <PricesChart data={chartData}/>
         </div>
       </section>
     </div>
