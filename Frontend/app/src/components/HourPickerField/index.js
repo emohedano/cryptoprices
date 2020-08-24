@@ -16,12 +16,16 @@ const HOURS = (() => {
 const HourPickerField = (props) => {
     const { text, onChange, value } = props;
 
+    function handleChange(e) {
+        onChange(e.target.value);
+    }
+
     return (
         <label className="date-picker-field">
             <span>{text}</span>
-            <select onChange={onChange}>
+            <select onChange={handleChange} value={value}>
                 {HOURS.map((hour) => {
-                   return <option value={hour} selected={hour === value}>{hour}</option>
+                   return <option key={hour} value={hour}>{hour}</option>
                 })}
             </select>
         </label>
@@ -29,7 +33,7 @@ const HourPickerField = (props) => {
 }
 
 HourPickerField.propTypes = {
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired
 }

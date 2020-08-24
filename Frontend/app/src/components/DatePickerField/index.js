@@ -19,7 +19,7 @@ const DatePickerField = (props) => {
 }
 
 DatePickerField.propTypes = {
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     value: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired
 }

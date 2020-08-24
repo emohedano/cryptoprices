@@ -1,0 +1,28 @@
+form {
+    padding-right: 1rem;
+}
+
+form label {
+    margin-bottom: 1rem;
+}
+
+form > h3 {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+form > button {
+    padding: .5rem;
+    background: #0088ff;
+    border: 1px solid #016ac5;
+    color: white;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.validation-message {
+    color:red;
+    margin: 1rem 0;
+    font-size: .9rem;
+}
