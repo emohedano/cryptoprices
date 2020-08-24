@@ -1,8 +1,21 @@
 from typing import Optional
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.services.coinapi import CoinApiService
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
 
 @app.get('/bitcoin/latestPrices')
 async def get_latest_prices():
