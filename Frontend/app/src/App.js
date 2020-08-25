@@ -7,7 +7,6 @@ import api from './services/Api';
 import logo from './logo.svg';
 import './App.css';
 
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState([]);

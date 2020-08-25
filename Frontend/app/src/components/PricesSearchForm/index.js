@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import parse from 'date-fns/parse';
 import isEqual from 'date-fns/isEqual';
 import isAfter from 'date-fns/isAfter';
+import differenceInDays from 'date-fns/differenceInDays'
 
 import DatePickerField from '../DatePickerField';
 import HourPickerField from '../HourPickerField';
 
 import './styles.css';
+
+
+const DEFAULT_HOUR = '00:00';
+const HOUR_FORMAT = 'HH:mm';
+
+// TODO: make this a parameter passed on build time
+const MAX_DAYS_RANGE = 5; // In days
 
 function validateDates(startDateTime, endDateTime) {
 
@@ -15,13 +23,13 @@ function validateDates(startDateTime, endDateTime) {
         return 'Start date is after the end date';
     }
 
-    // TODO: validate range to avoid huge dataset
+    // This is mainly to avoid reaching CoinApi requests daily quota
+    if (differenceInDays(endDateTime, startDateTime) > MAX_DAYS_RANGE) {
+        return `A maximum range of ${MAX_DAYS_RANGE} days is allowed`;
+    }
 
     return null;
 }
-
-const DEFAULT_HOUR = '00:00';
-const HOUR_FORMAT = 'HH:mm';
 
 const PricesSearchForm = (props) => {
     const [errorMessage, setErrorMessage] = useState(null);
@@ -39,7 +47,9 @@ const PricesSearchForm = (props) => {
         const error = validateDates(startDateTime, endDateTime);
         setErrorMessage(error);
         
-        props.onSearch(startDateTime, endDateTime);
+        if (!error){
+            props.onSearch(startDateTime, endDateTime);
+        }
     }
 
     return (
