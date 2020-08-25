@@ -9,19 +9,25 @@ import './App.css';
 
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     api.getLatestBitcoinPrices().then((data) => {
-      setChartData(data);  
+      setChartData(data);
+      setIsLoading(false);
     });
   }, [])
 
   async function handleSearch(startDate, endDate) {
     const startDateAsString = startDate.toISOString();
     const endDateAsString = endDate.toISOString();
+
+    setIsLoading(true);
     const data = await api.getBitcoinPrices(startDateAsString, endDateAsString);
+    
     setChartData(data);
+    setIsLoading(false);
   }  
 
   return (
@@ -32,7 +38,7 @@ function App() {
       <section className="prices-section">
         <PricesSearchForm onSearch={handleSearch}/>
         <div className="chart-placeholder">
-          <PricesChart data={chartData}/>
+          {isLoading ? <div className="loading-indicator">Loading...</div> : <PricesChart data={chartData}/>}
         </div>
       </section>
     </div>
