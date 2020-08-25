@@ -12,70 +12,24 @@ The aim of this project is to create an Web Application that displays the histor
 
 ## Setup
 
-### Backend
-
-1. Open a console ang go into the Backend/app directory:
+1. Open a terminal and go to the repository folder:
 
     ```
-    cd  cryptoprices/Backend
+    cd cryptoprices 
     ```
 
-2. Build the docker image for the backend
+2. Build the docker image
 
     ```
-    docker build -t cryptoprices-api-image ./
+    docker-compose build
     ```
 
 3. Run the docker container
 
-    **Development**
-
     ```
-    docker run -e API_KEY=YOUR_API_KEY -d --name cryptoprices-api -p 80:80 -v $(pwd):/app cryptoprices-api-image /start-reload.sh
-    ```
-
-    **Production**
-
-    ```
-    docker run -e API_KEY=YOUR_API_KEY -d --name cryptoprices-api -p 80:80 cryptoprices-api-image
+    API_KEY=YOUR_API_KEY docker-compose up -d
     ```
 
     where `YOUR_API_KEY` should be obtained from [coinapi.io](https://coinapi.io)
 
-4. You can access the api docs on [http://127.0.0.1/docs](http://127.0.0.1/docs)
-
-### Frontend
-
-1. Open a console ang go into the Frontend/app directory:
-
-    ```
-    cd  cryptoprices/Frontend
-    ```
-
-2. Build the docker image for the frontend
-
-    ```
-    docker build -t cryptoprices-fe-image ./
-    ```
-
-3. Run the docker container
-
-    **Development**
-
-    ```
-    docker run \
-        --name cryptoprices-fe \
-        -it \
-        --rm \
-        -v ${PWD}/app:/app \
-        -v /app/node_modules \
-        -p 3000:3000 \
-        -e CHOKIDAR_USEPOLLING=true \
-        cryptoprices-fe-image
-    ```
-
-    **Production**
-
-    > TODO: Add instructions for prod
-
-4. You can access the app on [http://127.0.0.1:3000](http://127.0.0.1:3000)
+4. You should be able to access the app on [http://localhost](http://localhost)

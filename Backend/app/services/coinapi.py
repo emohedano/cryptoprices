@@ -1,8 +1,8 @@
 from enum import Enum
 import datetime
 import requests
-from app.models.CoinPriceInTime import CoinPriceInTime
-from app.settings import settings
+from models.CoinPriceInTime import CoinPriceInTime
+from settings import settings
 
 class SupportedCoins(Enum):
     BTC = 'BTC'

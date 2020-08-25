@@ -1,6 +1,6 @@
 import parseISO from 'date-fns/parseISO';
 
-const BASE_API_URL = 'http://localhost';
+const BASE_API_URL = '/api';
 
 function mapChartData(serverData) {
     return serverData.map((result) => {
