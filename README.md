@@ -53,7 +53,7 @@ To deploy `FastAPI`, `uvicorn` was used as `asgi` container and `gunicorn` to ha
 
 **Redis**
 
-It seemed a good fit for the project since it allowed to cache the results coming from `CoinApi` using sorted maps to query date ranges with a small cost.
+It seemed a good fit for the project since it allowed to cache the results coming from `CoinApi` using [sorted maps](https://redis.io/commands/zrangebyscore) to query date ranges with a small cost.
 
 ## Setup
 
@@ -81,14 +81,26 @@ It seemed a good fit for the project since it allowed to cache the results comin
 
 ## Troubleshooting
 
-**Port forwarding**
+### Port forwarding
 
 If you have issues with the ports being forwarded to the host machine, please refer to `docker-compose.yml` for more details. By default ports `80` and `5000` will be used for the app and the API respectively.
 
-**Accessing Redis**
+### Accessing Redis
+
+To access the redis container, use the followiing command from the root directory of the repository:
 
 ```
 docker-compose exec redis redis-cli YOUR_REDIS_COMMAND
 ````
 
-For example, you could use `zcount BTC 0 100000000000000` to replace `YOUR_REDIS_COMMAND` to get all the bitcoin cached results.
+**Get all `bitcoin` cached resulst**
+
+```
+docker-compose exec redis redis-cli zcount BTC 0 100000000000000
+````
+
+**Remove all data**
+
+```
+docker-compose exec redis redis-cli FLUSHALL
+````
