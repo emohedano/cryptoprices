@@ -12,10 +12,15 @@ Is a Web Application that displays the historical data of Bitcoin prices. Things
 - Even when serializing/deserializing price data to/from `JSON` is still more cost-effective than making a request to the CoinApi.
 
 **Date**
-- USD currency will be used
 - Dates in the frontend should be displayed in local time so that it's familiar to the user
 - Dates should be sent to the server in UTC to simplify calculations
 - In the UI, when the selected date-time is past the current time it will assume the user wanted the most recent data.
+
+**Currency**
+- USD currency will be used to simplify things.
+
+**Language**
+- `en-us` should be used for the calendar as well as any other displayed text.
 
 **Cached Data**
 - Since the cache is at the server level, users that first come to the application will benefit from already cached data form other users.
