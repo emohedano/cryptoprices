@@ -11,11 +11,11 @@ class CoinPriceInTime:
         self.price_close: Optional[int] = None
     
     @classmethod
-    def formJSON(cls, data):
+    def fromJSON(cls, data):
         coinPrice = cls()
 
         coinPrice.time_period_start = data['time_period_start']
-        coinPrice.time_period_end = data['time_period_start']
+        coinPrice.time_period_end = data['time_period_end']
         coinPrice.price_open = data['price_open']
         coinPrice.price_high = data['price_high']
         coinPrice.price_low = data['price_low']
