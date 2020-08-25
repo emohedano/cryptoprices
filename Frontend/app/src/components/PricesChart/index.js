@@ -28,7 +28,7 @@ function PricesChart(props) {
     }];
 
     return (
-        <ReactApexChart type="candlestick" series={series} options={DEFAULT_CHART_OPTIONS}/>
+        <ReactApexChart type="candlestick" series={series} options={DEFAULT_CHART_OPTIONS} height={500}/>
     );
 }
 
