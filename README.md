@@ -5,6 +5,11 @@ Is a Web Application that displays the historical data of Bitcoin prices. Things
 - **Scalability**: consider scenarios where this project could be subject to high traffic and needs to be easily deployed on several servers
 - **Timezone**: it should take into consideration the local time of the user
 
+<div style="background-color:white; padding: 1rem;margin: 1rem;">
+    <img src="./screenshots/homepage.png">
+</div>
+
+
 ## Assumptions
 
 **Costs**
