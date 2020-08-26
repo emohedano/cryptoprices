@@ -123,9 +123,9 @@ class CoinApiService:
         return self.get_bitcoin_prices(self.__get_last_24_hours_date(), self.__get_current_iso_date())
     
     def get_initial_bitcoin_prices(self):
-        return self.get_bitcoin_prices(self.__get_past_month_iso_date(), self.__get_current_iso_date)
+        return self.get_bitcoin_prices(self.__get_past_month_iso_date(), self.__get_current_iso_date())
 
 coin_api_service = CoinApiService()
 
 # Request initial cached date when the application starts (if it's already cached it won't do anything)
-#coin_api_service.get_initial_bitcoin_prices()
+coin_api_service.get_initial_bitcoin_prices()
