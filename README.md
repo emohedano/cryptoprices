@@ -36,14 +36,14 @@ Is a Web Application that displays the historical data of Bitcoin prices. Things
     <img src="./architecture.svg">
 </div>
 
-> NOTE: All components were dockerized in independant containers.
+> NOTE: All components were dockerized in independent containers.
 
 ### Frontend
 
 **App**
 
 `React` library was chosen to speed up development, no CSS framework needed. All assets are compiled for production
-and deployed to an `Nginx` server.
+and deployed to an `Nginx` server. As for the chart, initially, the idea was to use a component based on `canvas` since it's way faster than `SVG` and it would have been a better fit. However, I was unable to find a component that displayed and behaved the way I wanted so I decided to stick to this one. It's something to improve on.
 
 **Nginx**
 
@@ -97,13 +97,13 @@ If you have issues with the ports being forwarded to the host machine, please re
 
 ### Accessing Redis
 
-To access the redis container, use the followiing command from the root directory of the repository:
+To access the Rredis container, use the following command from the root directory of the repository:
 
 ```
 docker-compose exec redis redis-cli YOUR_REDIS_COMMAND
 ````
 
-**Get all `bitcoin` cached resulst**
+**Get all `bitcoin` cached results**
 
 ```
 docker-compose exec redis redis-cli zcount BTC 0 100000000000000
