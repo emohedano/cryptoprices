@@ -75,7 +75,7 @@ class CoinApiService:
             first_result_date = normalize_iso_date(first_result[COIN_SCORE_KEY])
             normalized_datetime_start = normalize_iso_date(datetime_start)
 
-            last_result_date = normalize_iso_date(last_result['time_period_end'])
+            last_result_date = normalize_iso_date(last_result[COIN_SCORE_KEY])
             normalized_datetime_end = normalize_iso_date(datetime_end)
 
             print('cache params', first_result_date, normalized_datetime_start, last_result_date, normalized_datetime_end)
