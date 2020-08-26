@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import PricesSearchForm from './components/PricesSearchForm';
 import PricesChart from './components/PricesChart';
-import api from './services/Api';
+import api , { ApiError }from './services/Api';
 
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [chartError, setChartError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
 
@@ -15,20 +16,41 @@ function App() {
     api.getLatestBitcoinPrices().then((data) => {
       setChartData(data);
       setIsLoading(false);
-    });
+    }).catch(handleError);
   }, [])
 
+
+  function handleError(error) {
+      const message = (error instanceof ApiError) ? error.message :  'Unexpected error while processing the data'
+      setChartError(message);
+      setIsLoading(false);
+  }
+
   async function handleSearch(startDate, endDate) {
-    const startDateAsString = startDate.toISOString();
-    const endDateAsString = endDate.toISOString();
+    try {
+      const startDateAsString = startDate.toISOString();
+      const endDateAsString = endDate.toISOString();
 
-    setIsLoading(true);
-    const data = await api.getBitcoinPrices(startDateAsString, endDateAsString);
-    
-    setChartData(data);
-    setIsLoading(false);
-  }  
+      setIsLoading(true);
+      setChartError(null);
 
+      const data = await api.getBitcoinPrices(startDateAsString, endDateAsString);
+
+      setChartData(data);
+      setIsLoading(false);
+    } catch (error) {
+      handleError(error);
+    }
+  } 
+  
+  let message = null;
+
+  if (isLoading) {
+    message = <div className="loading-indicator">Loading...</div> 
+  } else if(chartError){
+    message = <div className="loading-indicator">{chartError}</div> 
+  }
+  
   return (
     <div className="app">
       <header className="app-header">
@@ -37,7 +59,7 @@ function App() {
       <section className="prices-section">
         <PricesSearchForm onSearch={handleSearch}/>
         <div className="chart-placeholder">
-          {isLoading ? <div className="loading-indicator">Loading...</div> : <PricesChart data={chartData}/>}
+          {message ? message : <PricesChart data={chartData}/>}
         </div>
       </section>
     </div>

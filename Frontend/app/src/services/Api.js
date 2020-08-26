@@ -2,6 +2,12 @@ import parseISO from 'date-fns/parseISO';
 
 const BASE_API_URL = '/api';
 
+export class ApiError extends Error {
+    constructor(message){
+        super(message);
+    }
+}
+
 function mapChartData(serverData) {
     return serverData.map((result) => {
         return {
@@ -21,7 +27,13 @@ class Api {
     async _makeRequest(url) {
         const fullUrl = `${BASE_API_URL}/${url}`;
         const response = await fetch(fullUrl);
-        return await response.json();
+        const body = await response.json();
+        
+        if (response.status > 200) {
+            throw new ApiError(body.detail);
+        }
+
+        return body;        
     }
     
     async getLatestBitcoinPrices() {
